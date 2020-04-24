@@ -94,6 +94,10 @@ class ActivityResults:Activity() {
             ContextProvider.context.startActivity(intent)
         }
 
+        fun requestPermissions(vararg permissions:String,onResult:(granted:Set<String>,denied:Set<String>,neverAsk:Set<String>)->Unit){
+            requestPermissions(permissions.toSet(),onResult)
+        }
+
         fun requestPermissions(permissions:Set<String>,onResult:(granted:Set<String>,denied:Set<String>,neverAsk:Set<String>)->Unit){
             val context=ContextProvider.context
             if(permissions.all { ContextCompat.checkSelfPermission(context,it)==PackageManager.PERMISSION_GRANTED }){
