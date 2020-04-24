@@ -13,9 +13,18 @@ import androidx.core.os.bundleOf
 import com.google.android.gms.common.api.ResolvableApiException
 
 class ActivityResults:Activity() {
-    private val extraIntent:Intent? by lazy { intent.getParcelableExtra(EXTRA_INTENT) }
-    private val extraOptions:Bundle? by lazy { intent.getParcelableExtra(EXTRA_OPTIONS) }
-    private val extraResultReceiver:ResultReceiver? by lazy { intent.getParcelableExtra(EXTRA_RESULT_RECEIVER) }
+    private val extraIntent:Intent? by lazy {
+        @Suppress("RemoveExplicitTypeArguments")
+        intent.getParcelableExtra<Intent?>(EXTRA_INTENT)
+    }
+    private val extraOptions:Bundle? by lazy {
+        @Suppress("RemoveExplicitTypeArguments")
+        intent.getParcelableExtra<Bundle?>(EXTRA_OPTIONS)
+    }
+    private val extraResultReceiver:ResultReceiver? by lazy {
+        @Suppress("RemoveExplicitTypeArguments")
+        intent.getParcelableExtra<ResultReceiver?>(EXTRA_RESULT_RECEIVER)
+    }
 
     private val extraPermissions:Array<String> by lazy { intent.getStringArrayExtra(EXTRA_PERMISSIONS)?: emptyArray() }
 
